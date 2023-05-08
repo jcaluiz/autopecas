@@ -1,0 +1,23 @@
+{
+  "name": "auto-pecas-abril-23",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "front": "cd front-end && npm run dev",
+    "build": "cd front-end && npm run build",
+    "start": "cd front-end && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcaluiz/autopecas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcaluiz/autopecas/issues"
+  },
+  "homepage": "https://github.com/jcaluiz/autopecas#readme"
+}
