@@ -5,7 +5,7 @@ export default function UserBar() {
     
 
     return (
-        <nav className="flex gap-10">
+        <nav className="flex gap-10 max-sm:gap-3">
             <UserOptions />
 
             <button>

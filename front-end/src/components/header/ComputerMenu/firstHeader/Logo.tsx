@@ -12,7 +12,7 @@ export default function Logo() {
                 width={150}
                 height={150}
                 alt="logo da VR Auto Peças"
-                className="box-border max-lg:w-32"
+                className="box-border max-lg:w-32 max-sm:w-20"
             />
         </Link>
 

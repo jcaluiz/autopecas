@@ -1,9 +1,15 @@
+import { CounterContext } from "@/context/Context";
 import FirstMobileHeader from "./MobileMenu/FirstMobileHeader";
+import { useContext } from "react";
+import SecondMobileHeader from "./MobileMenu/SecondMobileHeader";
 
 export default function MobileMenu() {
+    const { state } = useContext(CounterContext);
+
     return (
-        <header className="w-full lg:hidden text-white flex flex-col sticky top-0">
+        <>
             <FirstMobileHeader />
-        </header>
+            <SecondMobileHeader />
+        </>
     )
 }
