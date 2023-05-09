@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "cd front-end && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "front": "cd front-end && npm run dev",
     "build": "cd front-end && npm run build",
