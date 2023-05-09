@@ -15,6 +15,6 @@
         }
     ],
     "scripts": {
-        "build": "pnpm build"
+        "build": "npm rum dev"
     }
 }
