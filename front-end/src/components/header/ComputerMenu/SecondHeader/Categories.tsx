@@ -10,16 +10,14 @@ import Gearing from "./categories/gearing";
 export default function Categories() {
     return (
         <>
-            <ul className="flex gap-1 w-full items-center pr-3 text-xs">
-                <Acessories />
-                <Wrench />
-                <SteeringWeel />
-                <Eletric />
-                <Filter />
-                <Engine />
-                <Gear />
-                <Gearing />
-            </ul>
+            <Acessories />
+            <Wrench />
+            <SteeringWeel />
+            <Eletric />
+            <Filter />
+            <Engine />
+            <Gear />
+            <Gearing />
         </>
     )
 }

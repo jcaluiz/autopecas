@@ -7,7 +7,9 @@ export default function SecondHeader() {
         <header className="bg-green-header-second h-12 hidden lg:flex justify-around items-center">
             <div className="flex justify-between items-center">
                 <SearchByCategory />
-                <Categories />
+                <ul className="flex gap-1 w-full items-center pr-3 text-xs">
+                    <Categories />
+                </ul>
             </div>
             <SocialMedia />
         </header>

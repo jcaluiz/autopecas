@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "front-end/package.json",
+            "use": "@vercel/node",
+            "config": {
+                "maxLambdaSize": "512mb"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/front-end/$1",
+            "cleanUrls": true,
+            "headers": {
+                "Cache-Control": "s-maxage=1, stale-while-revalidate"
+            }
+        }
+    ]
+}
