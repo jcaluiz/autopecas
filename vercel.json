@@ -13,5 +13,8 @@
             "src": "/.*",
             "dest": "/"
         }
-    ]
+    ],
+    "scripts": {
+        "build": "pnpm build"
+    }
 }
