@@ -14,7 +14,10 @@ export default function User() {
 
     const [user, setUser] = useState('');
     useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem('user')));
+        const storage = localStorage.getItem('user');
+        if (storage) {
+            setUser(storage);
+        }
     }, []);
 
     // const handleClick = (e: ) => {

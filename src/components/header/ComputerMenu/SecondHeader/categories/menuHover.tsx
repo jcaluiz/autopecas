@@ -1,5 +1,3 @@
-import { Radio } from "lucide-react";
-import Sidebar from "../Sidebar";
 import { ReactElement } from "react";
 
 interface Props {
@@ -15,7 +13,6 @@ export default function MenuHover({children}: Props) {
                     {children}
                 </li>
             </ul>
-            <Sidebar />
         </div>
     )
 }

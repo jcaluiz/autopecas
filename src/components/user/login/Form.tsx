@@ -11,7 +11,10 @@ export default function Form() {
 
     const handleClick = (e: any) => {
         e.preventDefault();
-        localStorage.setItem("user", JSON.stringify(email.match(/[^\d]+/)[0]));
+        const onlyName = email.match(/[^\d]+/)
+        if (onlyName && onlyName[0] !== null) {
+            localStorage.setItem("user", JSON.stringify(onlyName[0]));
+        }
         router.push('/')
     };
 
