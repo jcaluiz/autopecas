@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className='h-screen w-screen lg:w-full bg-white-body flex flex-col relative'>
+    <main className='h-screen w-full bg-white-body flex flex-col relative'>
     {/* // <main> */}
       <Header />
       <MainHome />

@@ -10,7 +10,7 @@ export default function Document() {
         <link href="https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap" rel="stylesheet" />
         <title>Home - VR Auto Peças</title>
       </Head>
-      <body className='overflow-x-hidden w-screen'>
+      <body className='overflow-x-hidden w-full'>
         <Main />
         <NextScript />
       </body>

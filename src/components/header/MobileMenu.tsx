@@ -8,7 +8,7 @@ export default function MobileMenu() {
     const { state } = useContext(CounterContext);
 
     return (
-        <header className="relative">
+        <header className="relative w-full">
             <FirstMobileHeader />
             <SecondMobileHeader />
             {

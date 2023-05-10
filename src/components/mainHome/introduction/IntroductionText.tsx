@@ -8,7 +8,7 @@ const abel = Abel({
 
 export default function IntroductionText() {
     return (
-        <div className='w-1/2 flex flex-col gap-20 items-center pt-10 pl-20'>
+        <div className='max-lg:w-80 lg:w-1/2 flex flex-col gap-20 items-center pt-10 lg:pl-20'>
           <h1 className={`${abel.className} text-5xl text-center`}>Peças de qualidade para um desempenho sem igual.</h1>
           <p className={`${abel.className} flex flex-wrap text-center`}>
             Além disso, investir em autopeças de qualidade também pode
