@@ -3,7 +3,7 @@ import IntroductionText from "./introduction/IntroductionText";
 
 export default function Introduction() {
     return (
-        <div className='w-full border h-4/5 max-lg:pl-20 flex justify-between bg-gradient-to-r from-yellow-200 pb-10 max-lg:relative'>
+        <div className='w-screen border h-4/5 flex pl-16 justify-between bg-gradient-to-r from-yellow-200 pb-10 max-lg:relative'>
             <IntroductionText />
             <IntroductionImage />
         </div>
