@@ -1,21 +1,44 @@
 'use client';
+import Requests from "@/services/Requests";
 import { CornerDownLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Form() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [hasAccess, setHasAccess] = useState(false);
+    const [invalidAccess, setInvalidAccess] = useState('');
 
-    const handleClick = (e: any) => {
-        e.preventDefault();
+    const usersRequests = async () => {
+        const requests = new Requests();
+        const token = await requests.login(email, password);
+        if (token && token.message) {
+            localStorage.setItem('message', JSON.stringify(token.message));
+            setHasAccess(true);
+            setInvalidAccess('');
+        } else {
+            localStorage.setItem('message', '');
+            setInvalidAccess(token.message);
+        }
+    }
+
+    useEffect(() => {
         const onlyName = email.match(/[^\d]+/)
-        if (onlyName && onlyName[0] !== null) {
+        if (onlyName && onlyName[0] !== null && hasAccess) {
             localStorage.setItem("user", JSON.stringify(onlyName[0]));
         }
-        router.push('/')
+        if (hasAccess) {
+            router.push('/');
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hasAccess]);
+    
+    const handleClick = async (e: any) => {
+        e.preventDefault();
+        usersRequests();
     };
 
     return (
@@ -25,10 +48,16 @@ export default function Form() {
                 Voltar
             </Link>
             <p className="font-bold text-lg">Digite o seu e-mail, CPF ou CNPJ</p>
+            {
+                invalidAccess !== '' && (
+                    <p className="text-md text-center text-zinc-500">{invalidAccess}</p>
+                )
+            }
             <input
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-white-body h-10"
                 type="text"
+                value={email}
                 placeholder="E-mail, CPF ou CNPJ"
             />
 
@@ -36,6 +65,7 @@ export default function Form() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="bg-white-body h-10"
                 type="password"
+                value={password}
                 placeholder="Senha"
             />
 

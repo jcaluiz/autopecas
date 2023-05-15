@@ -9,7 +9,9 @@ export const reducer = (state: StateType, action: ActionType) => {
         case "RESET":
             return { ...state, count: 0 };
         case "MENUMOBILE":
-            return { ...state, clickMenu: !state.clickMenu};
+            return { ...state, clickMenu: !state.clickMenu };
+        case "PERSONALDATACUSTOMER":
+            return { ...state, personalDataCustomer: !state.personalDataCustomer };
         default:
             return state;
     }
