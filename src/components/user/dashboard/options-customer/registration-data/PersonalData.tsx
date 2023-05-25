@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 export default function PersonalData() {
     const { state, dispatch } = useContext(CounterContext);
-    console.log(state.personalDataCustomer);
+
     return (
         <div className="flex flex-col gap-3">
             <h3>Dados Pessoais</h3>

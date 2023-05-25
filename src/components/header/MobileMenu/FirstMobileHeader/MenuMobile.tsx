@@ -5,9 +5,9 @@ import { useContext, useState } from "react";
 
 export default function MenuMobile() {
     const { state, dispatch } = useContext(CounterContext);
-    console.log(state.clickMenu);
+    
     return (
-        <button onClick={() => dispatch({ type: "MENUMOBILE" })}>
+        <button onClick={() => dispatch({ type: "MENUMOBILE", payload: !state.clickMenu })}>
             <AlignJustify size={50} />
         </button>
     )

@@ -30,8 +30,6 @@ export default function User() {
         getUserType();
     });
 
-    console.log(isCustomer);
-
     const classEffect = state.personalDataCustomer ? 'bg-black' : '';
     return (
         <>

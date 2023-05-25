@@ -41,9 +41,7 @@ export default function UserOptions() {
         };
         try {
             const requests = new Requests();
-            const {role} = await requests.getUserType()
-            console.log(role);
-            // console.log(userType);
+            const {role} = await requests.getUserType();
             getUserType[role]();
         } catch (error) {
             getUserType['']();
