@@ -14,6 +14,9 @@ export default function PersonalData() {
                         <p className="text-zinc-400 text-sm">Nome</p>
                         <p>Luiz Alberto</p>
                     </div>
+                    {/* <button onClick={() => dispatch({ type: "PERSONALDATACUSTOMER" })}>
+                        <ChevronRight />
+                    </button> */}
                 </div>
                 <div className="w-full h-0.5 bg-zinc-100" />
                 <div className="flex justify-between">
@@ -21,6 +24,9 @@ export default function PersonalData() {
                         <p className="text-zinc-400 text-sm">Telefone</p>
                         <p>{"(21) 99188-3501"}</p>
                     </div>
+                    {/* <button onClick={() => dispatch({ type: "PERSONALDATACUSTOMER" })}>
+                        <ChevronRight />
+                    </button> */}
                 </div>
                 <div className="w-full h-0.5 bg-zinc-100" />
                 <div className="flex justify-between">
