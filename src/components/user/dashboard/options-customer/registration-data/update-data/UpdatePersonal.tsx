@@ -9,7 +9,7 @@ export default function UpdatePersonal() {
         <form className="bg-white w-2/4 flex flex-col py-20 px-10 absolute shadow-lg">
             <button
                 className="absolute top-2 right-2"
-                onClick={() => dispatch({ type: "PERSONALDATACUSTOMER" })}
+                // onClick={() => dispatch({ type: "PERSONALDATACUSTOMER" })}
             >
                 <X />
             </button>
