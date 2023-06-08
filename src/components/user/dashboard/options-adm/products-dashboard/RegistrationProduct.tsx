@@ -7,7 +7,7 @@ import ProductForm from "./product-producer-register/ProductForm";
 import ProducerDashboard from "../ProducerDashboard";
 
 export default function RegistrationProduct() {
-    const {state} = useContext(CounterContext);
+    const {state, dispatch} = useContext(CounterContext);
     const [checkProduct, setCheckProduct] = useState('')
 
     const handleClickCheckProducer = async (e: FormEvent) => {
@@ -15,6 +15,7 @@ export default function RegistrationProduct() {
         const requests = new Requests;
         const request = await requests.findOneProducer(state.producer);
         if (request[0] !== undefined) {
+            dispatch({type: 'PRODUCERID', payload: request.id})
             setCheckProduct('has producer');
         } else {
             setCheckProduct('has not producer');

@@ -1,15 +1,19 @@
 import { CreditCard } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface Props {
+    id: number;
     name: string;
     salePrice: string;
     image: string;
 }
 
-export default function Product({name, salePrice, image}: Props) {
+export default function Product({id, name, salePrice, image}: Props) {
     const reais = salePrice.match(/^\d+/)?.[0];
     const centavos = salePrice.match(/\d+$/)?.[0];
+
+    const router = useRouter();
 
     return (
         <div className="bg-white-product group shadow-lg z-10 shadow-black/30 rounded w-72 h-96 flex flex-col p-5 justify-between relative">
@@ -29,7 +33,8 @@ export default function Product({name, salePrice, image}: Props) {
                 <CreditCard />
                 <p>{`1x R$ ${reais},${centavos} no cartão`}</p>
             </div>
-            <button 
+            <button
+                onClick={() => router.push(`/products/${id}`)}
                 className="bg-green-header-first text-white w-32 py-3 rounded absolute top-44 left-20 invisible group-hover:visible"
             >
                 COMPRAR

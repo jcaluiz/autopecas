@@ -42,7 +42,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({...product}),
+            body: JSON.stringify({ ...product }),
         });
         const users = await response.json();
         return users;
@@ -56,7 +56,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({codeOriginal}),
+            body: JSON.stringify({ codeOriginal }),
         });
         const users = await response.json();
         return users;
@@ -112,7 +112,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({token: token.token}),
+            body: JSON.stringify({ token: token.token }),
         });
         const role = await response.json();
         return role;
@@ -142,7 +142,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({brand}),
+            body: JSON.stringify({ brand }),
         });
         const role = await response.json();
         return role;
@@ -156,7 +156,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({vehicle}),
+            body: JSON.stringify({ vehicle }),
         });
         const role = await response.json();
         return role;
@@ -184,7 +184,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({...producer}),
+            body: JSON.stringify({ ...producer }),
         });
         const role = await response.json();
         return role;
@@ -237,7 +237,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({vehicle}),
+            body: JSON.stringify({ vehicle }),
         });
         const role = await response.json();
         return role;
@@ -251,7 +251,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({brand}),
+            body: JSON.stringify({ brand }),
         });
         const role = await response.json();
         return role;
@@ -265,7 +265,7 @@ export default class Requests {
                 'Content-Type': 'application/json',
                 Authorization: token.token,
             },
-            body: JSON.stringify({model, vehicleBrandId, vehicleId}),
+            body: JSON.stringify({ model, vehicleBrandId, vehicleId }),
         });
         const role = await response.json();
         return role;
@@ -291,6 +291,91 @@ export default class Requests {
             headers: {
                 'Content-Type': 'application/json',
                 // Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async createRelationshipProductOriginalCode(
+        productId: number,
+        originalCodeId: number,
+    ) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`http://localhost:3001/product-original-code`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+            body: JSON.stringify({ productId, originalCodeId }),
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async checkOriginalAndProducerCode(codeOriginalId: number, codeProducer: string) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(
+            `http://localhost:3001/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`, 
+            {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async createProductApplication(productId: number, vehicleModelId: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`http://localhost:3001/product-application`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+            body: JSON.stringify({ productId, vehicleModelId }),
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async findProductById(id: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`http://localhost:3001/product/by-id?productId=${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async findOriginalCodeById(id: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`http://localhost:3001/original-code/by-id?id=${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async findProducerById(id: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`http://localhost:3001/producer/find-id?id=${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
             },
         });
         const role = await response.json();

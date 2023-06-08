@@ -11,6 +11,7 @@ export default function OriginalCode() {
         e.preventDefault();
         const requests = new Requests();
         const request = await requests.findOneCodeOriginal(state.codOriginal);
+        console.log(request);
         if (request) {
             dispatch({type: 'CODEORIGINALID', payload: request.id});
             return setIsRegistered('registered');
