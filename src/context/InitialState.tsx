@@ -1,13 +1,16 @@
 import { StateType } from "./Types";
 
-export const initialState = {
+export const initialState: StateType = {
   count: 0,
   clickMenu: false,
   personalDataCustomer: false,
   name: '',
+  quantity: 0,
   codOriginal: '',
+  codeOriginalId: 0,
   codProducer: '',
   producer: '',
+  producerId: 0,
   description: '',
   vehicle: '',
   brand: '',
