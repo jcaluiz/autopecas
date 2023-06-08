@@ -28,8 +28,8 @@ export const reducer = (state: StateType, action: ActionType) => {
             return { ...state, brand: action.payload };
         case "MODEL":
             return { ...state, model: action.payload };
-        case "MODELS":
-            return { ...state, models: [...state.models, action.payload] };
+        // case "MODELS":
+        //     return { ...state, models: [...state.models, action.payload] };
         case "COSTPRICE":
             return { ...state, costPrice: action.payload };
         case "SALEPRICE":
