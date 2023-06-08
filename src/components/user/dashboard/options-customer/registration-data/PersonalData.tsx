@@ -1,9 +1,9 @@
-import { CounterContext } from "@/context/Context";
+// import { CounterContext } from "@/context/Context";
 import { ChevronRight } from "lucide-react";
-import { useContext } from "react";
+// import { useContext } from "react";
 
 export default function PersonalData() {
-    const { state, dispatch } = useContext(CounterContext);
+    // const { state, dispatch } = useContext(CounterContext);
 
     return (
         <div className="flex flex-col gap-3">
