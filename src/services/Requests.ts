@@ -162,7 +162,7 @@ export default class Requests {
         return role;
     }
 
-    public async findOneVehicleModel(model: string): Promise<IFindOneVehicleModel> {
+    public async findOneVehicleModel(model: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const response = await fetch(`http://localhost:3001/vehicle-model?model=${model}`, {
             method: 'GET',
