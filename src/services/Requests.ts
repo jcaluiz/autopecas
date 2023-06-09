@@ -1,6 +1,8 @@
 import CreateProducer from "./interfaces/CreateProducer";
 // import IFindOneVehicleModel from "./interfaces/IFindOneVehicleModel";
-import 'dotenv/config';
+import * as dotenv from'dotenv';
+
+dotenv.config();
 
 export default class Requests {
     private URL = process.env.URL_REQUEST || 'http://localhost:3001'
