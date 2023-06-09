@@ -1,9 +1,12 @@
 import CreateProducer from "./interfaces/CreateProducer";
-import IFindOneVehicleModel from "./interfaces/IFindOneVehicleModel";
+// import IFindOneVehicleModel from "./interfaces/IFindOneVehicleModel";
+import 'dotenv/config';
+
 export default class Requests {
+    private URL = process.env.URL_REQUEST || 'http://localhost:3001'
     public async getAllUsers() {
         const token = localStorage.getItem('message') || '';
-        const response = await fetch(`http://localhost:3001/user`, {
+        const response = await fetch(`${this.URL}/user`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -15,7 +18,7 @@ export default class Requests {
     }
 
     public async login(email: string, password: string) {
-        const response = await fetch(`http://localhost:3001/user`, {
+        const response = await fetch(`${this.URL}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +30,7 @@ export default class Requests {
     }
 
     public async getAllProducts() {
-        const response = await fetch(`http://localhost:3001/products`, {
+        const response = await fetch(`${this.URL}/products`, {
             method: 'GET',
         });
         const products = await response.json();
@@ -36,7 +39,7 @@ export default class Requests {
 
     public async createNewProduct(product: any) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/product`, {
+        const response = await fetch(`${this.URL}/product`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +53,7 @@ export default class Requests {
 
     public async createCodeOriginal(codeOriginal: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/original-code`, {
+        const response = await fetch(`${this.URL}/original-code`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +67,7 @@ export default class Requests {
 
     public async findOneCodeOriginal(codeOriginal: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/original-code?originalCode=${codeOriginal}`, {
+        const response = await fetch(`${this.URL}/original-code?originalCode=${codeOriginal}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +82,7 @@ export default class Requests {
     public async findOneCategory(category: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const newCategory = category.replace(/\s/gm, '-');
-        const response = await fetch(`http://localhost:3001/category/find-one?category=${newCategory}`, {
+        const response = await fetch(`${this.URL}/category/find-one?category=${newCategory}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +96,7 @@ export default class Requests {
     }
 
     public async getByEmail(email: string) {
-        const response = await fetch(`http://localhost:3001/user/email`, {
+        const response = await fetch(`${this.URL}/user/email`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -106,7 +109,7 @@ export default class Requests {
 
     public async getUserType() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/user/user-type`, {
+        const response = await fetch(`${this.URL}/user/user-type`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -122,7 +125,7 @@ export default class Requests {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const newProducer = producer.replace(/\s/gm, '-');
         console.log(newProducer);
-        const response = await fetch(`http://localhost:3001/producer?producer=${newProducer}`, {
+        const response = await fetch(`${this.URL}/producer?producer=${newProducer}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -136,7 +139,7 @@ export default class Requests {
 
     public async findOneVehicleBrand(brand: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle-brand/find-brand`, {
+        const response = await fetch(`${this.URL}/vehicle-brand/find-brand`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -150,7 +153,7 @@ export default class Requests {
 
     public async findOneVehicle(vehicle: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle/find-vehicle`, {
+        const response = await fetch(`${this.URL}/vehicle/find-vehicle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -164,7 +167,7 @@ export default class Requests {
 
     public async findOneVehicleModel(model: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle-model?model=${model}`, {
+        const response = await fetch(`${this.URL}/vehicle-model?model=${model}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -178,7 +181,7 @@ export default class Requests {
 
     public async createProducer(producer: CreateProducer) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/producer`, {
+        const response = await fetch(`${this.URL}/producer`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -192,7 +195,7 @@ export default class Requests {
 
     public async findAllVehicle() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle/all-vehicle`, {
+        const response = await fetch(`${this.URL}/vehicle/all-vehicle`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -205,7 +208,7 @@ export default class Requests {
 
     public async findAllVehicleBrand() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle-brand/all-brand`, {
+        const response = await fetch(`${this.URL}/vehicle-brand/all-brand`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -218,7 +221,7 @@ export default class Requests {
 
     public async findAllVehicleModel() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle-model/all-model`, {
+        const response = await fetch(`${this.URL}/vehicle-model/all-model`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -231,7 +234,7 @@ export default class Requests {
 
     public async createVehicle(vehicle: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle`, {
+        const response = await fetch(`${this.URL}/vehicle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -245,7 +248,7 @@ export default class Requests {
 
     public async createVehicleBrand(brand: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle-brand`, {
+        const response = await fetch(`${this.URL}/vehicle-brand`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -259,7 +262,7 @@ export default class Requests {
 
     public async createVehicleModel(model: string, vehicleBrandId: number, vehicleId: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/vehicle-model`, {
+        const response = await fetch(`${this.URL}/vehicle-model`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -273,7 +276,7 @@ export default class Requests {
 
     public async findAllCategories() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/category`, {
+        const response = await fetch(`${this.URL}/category`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -286,7 +289,7 @@ export default class Requests {
 
     public async findAllProduct() {
         // const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/product`, {
+        const response = await fetch(`${this.URL}/product`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -302,7 +305,7 @@ export default class Requests {
         originalCodeId: number,
     ) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/product-original-code`, {
+        const response = await fetch(`${this.URL}/product-original-code`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -317,7 +320,7 @@ export default class Requests {
     public async checkOriginalAndProducerCode(codeOriginalId: number, codeProducer: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const response = await fetch(
-            `http://localhost:3001/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`, 
+            `${this.URL}/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`, 
             {
             method: 'GET',
             headers: {
@@ -331,7 +334,7 @@ export default class Requests {
 
     public async createProductApplication(productId: number, vehicleModelId: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/product-application`, {
+        const response = await fetch(`${this.URL}/product-application`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -345,7 +348,7 @@ export default class Requests {
 
     public async findProductById(id: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/product/by-id?productId=${id}`, {
+        const response = await fetch(`${this.URL}/product/by-id?productId=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -358,7 +361,7 @@ export default class Requests {
 
     public async findOriginalCodeById(id: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/original-code/by-id?id=${id}`, {
+        const response = await fetch(`${this.URL}/original-code/by-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -371,7 +374,7 @@ export default class Requests {
 
     public async findProducerById(id: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`http://localhost:3001/producer/find-id?id=${id}`, {
+        const response = await fetch(`${this.URL}/producer/find-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
