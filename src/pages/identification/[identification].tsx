@@ -15,7 +15,11 @@ export default function Identification() {
     const [handleRouter, setHandleRouter] = useState('');
 
     const buttonClick = () => {
-        const userLocalstorage = localStorage.getItem('message');
+        let userLocalstorage: string | null = '';
+        if (typeof localStorage !== 'undefined') {
+            userLocalstorage = localStorage.getItem('message');
+          }
+          
         let idInLocalstorage: number = 0;
         if (userLocalstorage) idInLocalstorage = JSON.parse(userLocalstorage).user.id;
         console.log(Number(idInLocalstorage))

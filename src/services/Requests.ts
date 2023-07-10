@@ -12,7 +12,11 @@ export default class Requests {
     private HOST = process.env.REACT_APP_API_HOST || 'localhost:3005';
 
     public async getAllUsers() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
+
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user`, {
             method: 'GET',
             headers: {
@@ -45,7 +49,10 @@ export default class Requests {
     }
 
     public async createNewProduct(product: any) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product`, {
             method: 'POST',
             headers: {
@@ -59,7 +66,10 @@ export default class Requests {
     }
 
     public async createCodeOriginal(codeOriginal: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code`, {
             method: 'POST',
             headers: {
@@ -73,7 +83,10 @@ export default class Requests {
     }
 
     public async findOneCodeOriginal(codeOriginal: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code?originalCode=${codeOriginal}`, {
             method: 'GET',
             headers: {
@@ -87,7 +100,10 @@ export default class Requests {
     }
 
     public async findOneCategory(category: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const newCategory = category.replace(/\s/gm, '-');
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/category/find-one?category=${newCategory}`, {
             method: 'GET',
@@ -114,7 +130,10 @@ export default class Requests {
     };
 
     public async getUserType() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user/user-type`, {
             method: 'POST',
             headers: {
@@ -128,7 +147,10 @@ export default class Requests {
     }
 
     public async findOneProducer(producer: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const newProducer = producer.replace(/\s/gm, '-');
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer?producer=${newProducer}`, {
             method: 'GET',
@@ -143,7 +165,10 @@ export default class Requests {
     }
 
     public async findOneVehicleBrand(brand: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand/find-brand`, {
             method: 'POST',
             headers: {
@@ -157,7 +182,10 @@ export default class Requests {
     }
 
     public async findOneVehicle(vehicle: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle/find-vehicle`, {
             method: 'POST',
             headers: {
@@ -171,7 +199,10 @@ export default class Requests {
     }
 
     public async findOneVehicleModel(model: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model?model=${model}`, {
             method: 'GET',
             headers: {
@@ -185,7 +216,10 @@ export default class Requests {
     }
 
     public async createProducer(producer: CreateProducer) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer`, {
             method: 'POST',
             headers: {
@@ -199,7 +233,10 @@ export default class Requests {
     }
 
     public async findAllVehicle() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle/all-vehicle`, {
             method: 'GET',
             headers: {
@@ -212,7 +249,10 @@ export default class Requests {
     }
 
     public async findAllVehicleBrand() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand/all-brand`, {
             method: 'GET',
             headers: {
@@ -225,7 +265,10 @@ export default class Requests {
     }
 
     public async findAllVehicleModel() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model/all-model`, {
             method: 'GET',
             headers: {
@@ -238,7 +281,10 @@ export default class Requests {
     }
 
     public async createVehicle(vehicle: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle`, {
             method: 'POST',
             headers: {
@@ -252,7 +298,10 @@ export default class Requests {
     }
 
     public async createVehicleBrand(brand: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand`, {
             method: 'POST',
             headers: {
@@ -266,7 +315,10 @@ export default class Requests {
     }
 
     public async createVehicleModel(model: string, vehicleBrandId: number, vehicleId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model`, {
             method: 'POST',
             headers: {
@@ -280,7 +332,10 @@ export default class Requests {
     }
 
     public async findAllCategories() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/category`, {
             method: 'GET',
             headers: {
@@ -309,7 +364,10 @@ export default class Requests {
         productId: number,
         originalCodeId: number,
     ) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product-original-code`, {
             method: 'POST',
             headers: {
@@ -323,7 +381,10 @@ export default class Requests {
     }
 
     public async checkOriginalAndProducerCode(codeOriginalId: number, codeProducer: string) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`,
             {
@@ -338,7 +399,10 @@ export default class Requests {
     }
 
     public async createProductApplication(productId: number, vehicleModelId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product-application`, {
             method: 'POST',
             headers: {
@@ -352,7 +416,10 @@ export default class Requests {
     }
 
     public async findProductById(id: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product/by-id?productId=${id}`, {
             method: 'GET',
             headers: {
@@ -365,7 +432,10 @@ export default class Requests {
     }
 
     public async findOriginalCodeById(id: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code/by-id?id=${id}`, {
             method: 'GET',
             headers: {
@@ -378,7 +448,10 @@ export default class Requests {
     }
 
     public async findProducerById(id: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer/find-id?id=${id}`, {
             method: 'GET',
             headers: {
@@ -398,7 +471,10 @@ export default class Requests {
             status: string
         }
     ) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase`, {
             method: 'POST',
             headers: {
@@ -412,7 +488,10 @@ export default class Requests {
     }
 
     public async getAllPurchase() {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase/all-purchase`, {
             method: 'GET',
             headers: {
@@ -425,7 +504,10 @@ export default class Requests {
     }
 
     public async getPurchaseByUser(userId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase?userId=${userId}`, {
             method: 'GET',
             headers: {
@@ -438,112 +520,133 @@ export default class Requests {
     }
 
     public async getPurchaseByUserProductId(userId: number, productId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const routerWithQuery = `find-purchase?userId=${userId}&productId=${productId}`
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/purchase/${routerWithQuery}`,
             {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-        });
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+            });
         const role = await response.json();
         return role;
     }
 
     public async updatePurchase(id: number, quantity: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/purchase`,
             {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-            body: JSON.stringify({id, quantity})
-        });
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+                body: JSON.stringify({ id, quantity })
+            });
         const role = await response.json();
         return role;
     }
 
     public async deletePurchase(userId: number, ProductId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/purchase?productId=${ProductId}&userId=${userId}`,
             {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-        });
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+            });
         const role = await response;
         return role;
     }
 
     public async deletePurchaseByUserId(userId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/purchase?userId=${userId}`,
             {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-        });
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+            });
         const role = await response;
         return role;
     }
 
     public async getUserById(userId: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const routerWithQuery = `find-by-id?id=${userId}`
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/user/${routerWithQuery}`,
             {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-        });
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+            });
         const role = await response.json();
         return role;
     }
 
     public async updateProduct(product: IProductRequest) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
-        const {id, name, codeOriginalId, codeProducer, description, quantity, costPrice, salePrice, categoryId, ncm, image} = product;
-        const newProduct = {id, name, codeOriginalId, codeProducer, quantity, description, costPrice, salePrice, categoryId, ncm, image}
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
+        const { id, name, codeOriginalId, codeProducer, description, quantity, costPrice, salePrice, categoryId, ncm, image } = product;
+        const newProduct = { id, name, codeOriginalId, codeProducer, quantity, description, costPrice, salePrice, categoryId, ncm, image }
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/product/update`,
             {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-            body: JSON.stringify(newProduct),
-        });
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+                body: JSON.stringify(newProduct),
+            });
         const role = await response.json();
         return role;
     }
 
     public async deleteProductById(id: number) {
-        const token = JSON.parse(localStorage.getItem('message') || '');
+        let token: { token: string } = { token: '' };
+        if (typeof localStorage !== 'undefined') {
+            token = JSON.parse(localStorage.getItem('message') || '');
+        }
         const response = await fetch(
             `${this.PROTOCOL}://${this.HOST}/product/delete?id=${id}`,
             {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-        });
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+            });
         console.log(response);
         const role = await response;
         return role;

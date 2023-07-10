@@ -40,8 +40,12 @@ export default function Buy() {
     }, [purchase]);
 
     useEffect(() => {
-        const id = localStorage.getItem('id');
-        const newName = localStorage.getItem('user');
+        let id: string | null = '';
+        let newName: string | null = '';
+        if (typeof localStorage !== 'undefined') {
+            id = localStorage.getItem('id');
+            newName = localStorage.getItem('user');
+          }
         setUser({
             id,
             name: newName && newName?.replace(/"/gm, ''),

@@ -16,18 +16,25 @@ export default function UserOptions() {
     
     useEffect(() => {
         // localStorage.setItem('message', '')
-        const newMessage: string | null = localStorage.getItem('message');
-        const information: Storage = newMessage ? JSON.parse(newMessage) : {role: ''};
+        let newMessage: string | null;
+        let information: Storage = {token: '', role: ''};
+        let storage: string | null = '';
+        
+        if (typeof localStorage !== 'undefined') {
+            newMessage = localStorage.getItem('message');
+            information = newMessage ? JSON.parse(newMessage) : {role: ''};
+            storage = localStorage.getItem('user');
+          }
+
         if (information && information.role) {
             setUserType(information.role);
         }
-        const storage: string | null = localStorage.getItem('user');
         const newUser = storage && JSON.parse(storage);
         setUser(newUser);
     }, []);
 
     const handleClick = () => {
-        localStorage.clear()
+        if(typeof localStorage !== 'undefined') localStorage.clear()
         setUser('');
     }
 

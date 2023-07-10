@@ -77,7 +77,11 @@ export default function ProductPage() {
     }
 
     const handleClickPurchase = async () => {
-        const userId = Number(localStorage.getItem('id'));
+        let userId: number | string = 0;
+        if (typeof localStorage !== 'undefined') {
+            userId = Number(localStorage.getItem('id'));
+          }
+          
         const checkPurchase = await requests.getPurchaseByUserProductId(userId, Number(productId));
         const purchase = {
             userId,

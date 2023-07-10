@@ -19,7 +19,11 @@ export default function RegisterPurchase() {
     const getUsers = async () => {
         const getUser = await requests.getUserById(Number(state.user.id));
         setUser(getUser);
-        const userLocalstorage = localStorage.getItem('message');
+        let userLocalstorage: string | null = '';
+        if (typeof localStorage !== 'undefined') {
+            userLocalstorage = localStorage.getItem('message');
+          }
+          
         let idInLocalstorage;
         if (userLocalstorage) idInLocalstorage = JSON.parse(userLocalstorage).user.id;
         if (state.user.id === '' || Number(idInLocalstorage) !== Number(state.user.id)) router.push('/');

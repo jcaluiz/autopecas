@@ -12,9 +12,17 @@ export default function UserBar() {
     const [user, setUser] = useState<{id: string | null, name: string | null}>({id: '', name: ''});
 
     useEffect(() => {
+        let id: string | null = '';
+        let name: string | null = '';
+
+        if (typeof localStorage !== 'undefined') {
+            id = localStorage.getItem('id');
+            name = localStorage.getItem('user')
+          }
+
         setUser({
-            id: localStorage.getItem('id'),
-            name: localStorage.getItem('user')
+            id,
+            name,
         });
     }, []);
 

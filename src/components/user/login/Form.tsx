@@ -17,19 +17,27 @@ export default function Form({ handleRouter, buttonClick }: Props) {
     const [hasAccess, setHasAccess] = useState(false);
     const [invalidAccess, setInvalidAccess] = useState('');
 
-    const idStorage = localStorage.getItem('id');
+    let idStorage: string | number | null = ''; 
+    if (typeof localStorage !== 'undefined') {
+        idStorage = localStorage.getItem('id');
+      }
+      
     const usersRequests = async () => {
         const requests = new Requests();
         const token = await requests.login(email, password);
         if (idStorage && token.message.user.id !== idStorage) router.push('/');
-        localStorage.setItem("user", JSON.stringify(token.message.user.name.match(/\w+/)[0]));
-        localStorage.setItem("id", JSON.stringify(token.message.user.id));
-        if (token && token.message) {
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem("user", JSON.stringify(token.message.user.name.match(/\w+/)[0]));
+            localStorage.setItem("id", JSON.stringify(token.message.user.id));
+          }
+        if (token && token.message && typeof localStorage !== 'undefined') {
             localStorage.setItem('message', JSON.stringify(token.message));
             setHasAccess(true);
             setInvalidAccess('');
         } else {
-            localStorage.setItem('message', '');
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem('message', '');
+              }
             setInvalidAccess(token.message);
         }
     }

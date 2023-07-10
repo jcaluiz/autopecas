@@ -17,7 +17,11 @@ export default function SidebarCustomer({handleClick}: Props) {
 
     const [user, setUser] = useState('');
     useEffect(() => {
-        const storage = localStorage.getItem('user');
+        let storage: string | null = ''; 
+        if (typeof localStorage !== 'undefined') {
+            storage = localStorage.getItem('user');
+          }
+          
         if (storage) {
             setUser(storage);
         }
