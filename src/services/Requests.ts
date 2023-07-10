@@ -29,6 +29,7 @@ export default class Requests {
     }
 
     public async login(email: string, password: string) {
+        console.log(`${this.PROTOCOL}://${this.HOST}/user`);
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user`, {
             method: 'POST',
             headers: {
