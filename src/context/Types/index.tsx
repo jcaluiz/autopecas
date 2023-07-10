@@ -1,3 +1,7 @@
+import IProduct from "@/Interfaces/IProduct";
+import IProductPurchase from "@/Interfaces/IProductPurchase";
+import IProductRequest from "@/Interfaces/IProductRequest";
+import IUser from "@/Interfaces/IUser";
 import IFindOneVehicleModel from "@/services/interfaces/IFindOneVehicleModel";
 
 type models = {
@@ -28,6 +32,10 @@ export type StateType = {
     image: string;
     models: IFindOneVehicleModel[];
     registerModels: boolean;
+    purchase: IProductPurchase[];
+    user: IUser;
+    products: IProductRequest[];
+    productNameSearch: string;
 };
 
 export type ActionType = {
@@ -70,4 +78,12 @@ export type ActionType = {
     type: "IMAGE", payload: string,
 } | {
     type: "REGISTERMODELS", payload: boolean,
+} | {
+    type: "PURCHASE", payload: IProductPurchase[],
+} | {
+    type: "USER", payload: IUser,
+} | {
+    type: "PRODUCTREQUEST", payload: IProductRequest[],
+} | {
+    type: "PRODUCTNAMESEARCH", payload: string,
 };

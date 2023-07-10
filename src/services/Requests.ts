@@ -1,18 +1,22 @@
+import IProductPurchase from "@/Interfaces/IProductPurchase";
 import CreateProducer from "./interfaces/CreateProducer";
 // import IFindOneVehicleModel from "./interfaces/IFindOneVehicleModel";
-import * as dotenv from'dotenv';
+import * as dotenv from 'dotenv';
+import IProductRequest from "@/Interfaces/IProductRequest";
 
 dotenv.config();
 
 export default class Requests {
-    private URL = process.env.URL_REQUEST || 'http://localhost:3001'
+    private PROTOCOL = process.env.REACT_APP_API_PROTOCOL || "http";
+    private HOST = process.env.REACT_APP_API_HOST || 'localhost:3005';
+
     public async getAllUsers() {
-        const token = localStorage.getItem('message') || '';
-        const response = await fetch(`${this.URL}/user`, {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: token,
+                Authorization: token.token,
             },
         });
         const users = await response.json();
@@ -20,7 +24,7 @@ export default class Requests {
     }
 
     public async login(email: string, password: string) {
-        const response = await fetch(`${this.URL}/user`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +36,7 @@ export default class Requests {
     }
 
     public async getAllProducts() {
-        const response = await fetch(`${this.URL}/products`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/products`, {
             method: 'GET',
         });
         const products = await response.json();
@@ -41,7 +45,7 @@ export default class Requests {
 
     public async createNewProduct(product: any) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/product`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +59,7 @@ export default class Requests {
 
     public async createCodeOriginal(codeOriginal: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/original-code`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +73,7 @@ export default class Requests {
 
     public async findOneCodeOriginal(codeOriginal: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/original-code?originalCode=${codeOriginal}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code?originalCode=${codeOriginal}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +88,7 @@ export default class Requests {
     public async findOneCategory(category: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const newCategory = category.replace(/\s/gm, '-');
-        const response = await fetch(`${this.URL}/category/find-one?category=${newCategory}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/category/find-one?category=${newCategory}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,12 +97,11 @@ export default class Requests {
             // body: JSON.stringify({producer: producer}),
         });
         const role = await response.json();
-        console.log(role);
         return role;
     }
 
     public async getByEmail(email: string) {
-        const response = await fetch(`${this.URL}/user/email`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user/email`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -111,7 +114,7 @@ export default class Requests {
 
     public async getUserType() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/user/user-type`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user/user-type`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,8 +129,7 @@ export default class Requests {
     public async findOneProducer(producer: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const newProducer = producer.replace(/\s/gm, '-');
-        console.log(newProducer);
-        const response = await fetch(`${this.URL}/producer?producer=${newProducer}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer?producer=${newProducer}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ export default class Requests {
 
     public async findOneVehicleBrand(brand: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle-brand/find-brand`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand/find-brand`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -155,7 +157,7 @@ export default class Requests {
 
     public async findOneVehicle(vehicle: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle/find-vehicle`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle/find-vehicle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -169,7 +171,7 @@ export default class Requests {
 
     public async findOneVehicleModel(model: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle-model?model=${model}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model?model=${model}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -183,7 +185,7 @@ export default class Requests {
 
     public async createProducer(producer: CreateProducer) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/producer`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -197,7 +199,7 @@ export default class Requests {
 
     public async findAllVehicle() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle/all-vehicle`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle/all-vehicle`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -210,7 +212,7 @@ export default class Requests {
 
     public async findAllVehicleBrand() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle-brand/all-brand`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand/all-brand`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -223,7 +225,7 @@ export default class Requests {
 
     public async findAllVehicleModel() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle-model/all-model`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model/all-model`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -236,7 +238,7 @@ export default class Requests {
 
     public async createVehicle(vehicle: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -250,7 +252,7 @@ export default class Requests {
 
     public async createVehicleBrand(brand: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle-brand`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -264,7 +266,7 @@ export default class Requests {
 
     public async createVehicleModel(model: string, vehicleBrandId: number, vehicleId: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/vehicle-model`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -278,7 +280,7 @@ export default class Requests {
 
     public async findAllCategories() {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/category`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/category`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -291,7 +293,7 @@ export default class Requests {
 
     public async findAllProduct() {
         // const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/product`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -307,7 +309,7 @@ export default class Requests {
         originalCodeId: number,
     ) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/product-original-code`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product-original-code`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -322,21 +324,21 @@ export default class Requests {
     public async checkOriginalAndProducerCode(codeOriginalId: number, codeProducer: string) {
         const token = JSON.parse(localStorage.getItem('message') || '');
         const response = await fetch(
-            `${this.URL}/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`, 
+            `${this.PROTOCOL}://${this.HOST}/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`,
             {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token.token,
-            },
-        });
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token.token,
+                },
+            });
         const role = await response.json();
         return role;
     }
 
     public async createProductApplication(productId: number, vehicleModelId: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/product-application`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product-application`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -350,7 +352,7 @@ export default class Requests {
 
     public async findProductById(id: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/product/by-id?productId=${id}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product/by-id?productId=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -363,7 +365,7 @@ export default class Requests {
 
     public async findOriginalCodeById(id: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/original-code/by-id?id=${id}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code/by-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -376,7 +378,7 @@ export default class Requests {
 
     public async findProducerById(id: number) {
         const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.URL}/producer/find-id?id=${id}`, {
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer/find-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -384,6 +386,165 @@ export default class Requests {
             },
         });
         const role = await response.json();
+        return role;
+    }
+
+    public async postPurchase(
+        product: {
+            userId: number,
+            productId: number,
+            quantity: number,
+            status: string
+        }
+    ) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+            body: JSON.stringify(product),
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async getAllPurchase() {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase/all-purchase`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async getPurchaseByUser(userId: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase?userId=${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async getPurchaseByUserProductId(userId: number, productId: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const routerWithQuery = `find-purchase?userId=${userId}&productId=${productId}`
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/purchase/${routerWithQuery}`,
+            {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async updatePurchase(id: number, quantity: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/purchase`,
+            {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+            body: JSON.stringify({id, quantity})
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async deletePurchase(userId: number, ProductId: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/purchase?productId=${ProductId}&userId=${userId}`,
+            {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response;
+        return role;
+    }
+
+    public async deletePurchaseByUserId(userId: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/purchase?userId=${userId}`,
+            {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response;
+        return role;
+    }
+
+    public async getUserById(userId: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const routerWithQuery = `find-by-id?id=${userId}`
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/user/${routerWithQuery}`,
+            {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async updateProduct(product: IProductRequest) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const {id, name, codeOriginalId, codeProducer, description, quantity, costPrice, salePrice, categoryId, ncm, image} = product;
+        const newProduct = {id, name, codeOriginalId, codeProducer, quantity, description, costPrice, salePrice, categoryId, ncm, image}
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/product/update`,
+            {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+            body: JSON.stringify(newProduct),
+        });
+        const role = await response.json();
+        return role;
+    }
+
+    public async deleteProductById(id: number) {
+        const token = JSON.parse(localStorage.getItem('message') || '');
+        const response = await fetch(
+            `${this.PROTOCOL}://${this.HOST}/product/delete?id=${id}`,
+            {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token.token,
+            },
+        });
+        console.log(response);
+        const role = await response;
         return role;
     }
 };

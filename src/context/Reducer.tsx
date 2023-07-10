@@ -42,6 +42,14 @@ export const reducer = (state: StateType, action: ActionType) => {
             return { ...state, image: action.payload };
         case "REGISTERMODELS":
             return { ...state, registerModels: action.payload };
+        case "PURCHASE":
+            return { ...state, purchase: action.payload };
+        case "USER":
+            return { ...state, user: action.payload };
+        case "PRODUCTREQUEST":
+            return { ...state, products: action.payload };
+        case "PRODUCTNAMESEARCH":
+            return { ...state, productNameSearch: action.payload };
         default:
             return state;
     }

@@ -28,11 +28,12 @@ export default function Adm() {
         getUserType();
     });
 
-    const admButtons = ['PRODUTOS', 'FORNECEDORES', 'USUÁRIOS'];
+    const admButtons = ['PRODUTOS', 'FORNECEDORES', 'USUÁRIOS', 'VENDAS'];
     const infoButtons = [
         'Aqui você pode cadastrar e ter acesso a todos os produtos',
         'Aqui você pode cadastrar e ter acesso a todos os fornecedores',
         'Aqui você pode cadastrar e ter acesso a todos os usuários',
+        'Aqui você pode cadastrar e ter acesso a todas as vendas',
     ];
 
     const handleClick = (button: string) => setButtonOption(button);

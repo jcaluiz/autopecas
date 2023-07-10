@@ -22,4 +22,8 @@ export const initialState: StateType = {
   image: '',
   models: [],
   registerModels: true,
+  purchase: [],
+  user: {id: '', name: ''},
+  products: [],
+  productNameSearch: '',
 };

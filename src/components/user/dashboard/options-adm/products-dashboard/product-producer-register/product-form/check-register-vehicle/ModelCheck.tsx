@@ -4,7 +4,11 @@ import { CounterContext } from "@/context/Context";
 import Requests from "@/services/Requests";
 import { FormEvent, useContext, useEffect, useState } from "react";
 
-export default function ModelCheck() {
+interface Props {
+    setmodelo: Function;
+}
+
+export default function ModelCheck({setmodelo}: Props) {
     const { state, dispatch } = useContext(CounterContext);
     // const [registerModels, setRegisterModels] = useState(true);
     const [modelState, setModelState] = useState([
@@ -49,6 +53,11 @@ export default function ModelCheck() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.vehicle, state.brand, state.model]);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch({ type: 'MODEL', payload: e.target.value })
+        setmodelo(e.target.value)
+    }
+
     return (
         <div className="flex flex-col">
             {
@@ -59,7 +68,7 @@ export default function ModelCheck() {
                             type="text"
                             id="model-product"
                             className="bg-zinc-300 rounded h-8 w-32"
-                            onChange={({ target: { value } }) => dispatch({ type: 'MODEL', payload: value })}
+                            onChange={(e) => handleChange(e)}
                             value={state.model}
                         />
                         <select

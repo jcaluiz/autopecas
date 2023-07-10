@@ -5,16 +5,25 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function Form() {
+interface Props {
+    handleRouter: string;
+    buttonClick?: Function;
+}
+
+export default function Form({ handleRouter, buttonClick }: Props) {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hasAccess, setHasAccess] = useState(false);
     const [invalidAccess, setInvalidAccess] = useState('');
 
+    const idStorage = localStorage.getItem('id');
     const usersRequests = async () => {
         const requests = new Requests();
         const token = await requests.login(email, password);
+        if (idStorage && token.message.user.id !== idStorage) router.push('/');
+        localStorage.setItem("user", JSON.stringify(token.message.user.name.match(/\w+/)[0]));
+        localStorage.setItem("id", JSON.stringify(token.message.user.id));
         if (token && token.message) {
             localStorage.setItem('message', JSON.stringify(token.message));
             setHasAccess(true);
@@ -26,18 +35,16 @@ export default function Form() {
     }
 
     useEffect(() => {
-        const onlyName = email.match(/[^\d]+/)
-        if (onlyName && onlyName[0] !== null && hasAccess) {
-            localStorage.setItem("user", JSON.stringify(onlyName[0]));
+        console.log(handleRouter);
+        if (hasAccess && handleRouter !== '') {
+            router.push(handleRouter);
         }
-        if (hasAccess) {
-            router.push('/');
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [hasAccess]);
-    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hasAccess, idStorage, buttonClick]);
+
     const handleClick = async (e: any) => {
         e.preventDefault();
+        buttonClick && buttonClick()
         usersRequests();
     };
 

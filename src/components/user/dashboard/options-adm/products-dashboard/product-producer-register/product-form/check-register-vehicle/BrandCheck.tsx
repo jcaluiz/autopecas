@@ -3,7 +3,11 @@ import { CounterContext } from "@/context/Context";
 import Requests from "@/services/Requests";
 import { FormEvent, useContext, useEffect, useState } from "react";
 
-export default function BrandCheck() {
+interface Props {
+    setMarca: Function;
+}
+
+export default function BrandCheck({setMarca}: Props) {
     const { state, dispatch } = useContext(CounterContext);
     const [brandState, setBrandState] = useState([{ id: 0, brand: '' }]);
     const [willRegister, setWillRegister] = useState(false);
@@ -26,6 +30,11 @@ export default function BrandCheck() {
         setWillRegister(!willRegister);
     }
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch({ type: 'BRAND', payload: e.target.value })
+        setMarca(e.target.value)
+    }
+
     return (
         <div className="flex flex-col">
             {
@@ -36,7 +45,7 @@ export default function BrandCheck() {
                             type="text"
                             id="brand-product"
                             className="bg-zinc-300 rounded h-8 w-32"
-                            onChange={({ target: { value } }) => dispatch({ type: 'BRAND', payload: value })}
+                            onChange={(e) => handleChange(e)}
                             value={state.brand}
                         />
                         <select

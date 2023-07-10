@@ -24,6 +24,7 @@ interface Props {
 
 export default function ProductForm({ handleClick, checkProduct }: Props) {
     const { state, dispatch } = useContext(CounterContext);
+    const [aplicacao, setAplicacao] = useState<{ veiculo: string; marca: string; modelo: string; }[]>([]);
 
     const registerRelationshipProduct = async (
         product: IProduct) => {
@@ -35,8 +36,7 @@ export default function ProductForm({ handleClick, checkProduct }: Props) {
         if (!isRegistered) {
             const createProduct = await requests.createNewProduct(product);
 
-            console.log(createProduct);
-            if(!createProduct) {
+            if (!createProduct) {
                 alert('Tente Cadastrar de novo');
             }
 
@@ -48,6 +48,13 @@ export default function ProductForm({ handleClick, checkProduct }: Props) {
                 createProduct.id,
                 state.codeOriginalId,
             );
+            setAplicacao([
+                {
+                    modelo: '',
+                    veiculo: '',
+                    marca: '',
+                }
+            ]);
         } else {
             alert('Produto já tem Cadastro');
         }
@@ -73,7 +80,6 @@ export default function ProductForm({ handleClick, checkProduct }: Props) {
         const categoryId = await requests.findOneCategory(state.category);
         const producer = await requests.findOneProducer(state.producer);
         const codeOriginal = await requests.findOneCodeOriginal(state.codOriginal);
-        console.log(codeOriginal);
         const product = {
             name: state.name,
             codeOriginalId: codeOriginal.id,
@@ -81,10 +87,10 @@ export default function ProductForm({ handleClick, checkProduct }: Props) {
             quantity: state.quantity,
             producerId: producer[0].id,
             description: state.description,
-            model: state.models.map(({ model, vehicle, vehicleBrand }) => ({
-                model,
-                vehicle: vehicle.vehicle,
-                brand: vehicleBrand.brand,
+            model: aplicacao.map(({ modelo, veiculo, marca }) => ({
+                model: modelo,
+                vehicle: veiculo,
+                brand: marca,
             })),
             costPrice: state.costPrice,
             salePrice: state.salePrice,
@@ -93,7 +99,7 @@ export default function ProductForm({ handleClick, checkProduct }: Props) {
             image: state.image,
         }
         registerRelationshipProduct(product);
-        // restartInputs();
+        restartInputs();
     }
 
     return (
@@ -106,7 +112,7 @@ export default function ProductForm({ handleClick, checkProduct }: Props) {
                 <QuantityProduct />
                 <CheckProducer handleClick={handleClick} checkProduct={checkProduct} />
                 <DescriptionProduct />
-                <CheckRegisterVehicle />
+                <CheckRegisterVehicle aplicacao={aplicacao} setAplicacao={setAplicacao} />
                 <CostPriceProduct />
                 <SalePriceProduct />
                 <CategoryProduct />

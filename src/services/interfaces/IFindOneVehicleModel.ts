@@ -3,11 +3,11 @@ export default interface IFindOneVehicleModel {
     model: string,
     vehicleBrandId: number,
     vehicleId: number,
-    vehicle: {
+    vehicle?: {
         id: number,
         vehicle: string,
     },
-    vehicleBrand: {
+    vehicleBrand?: {
         id: number,
         brand: string,
     }

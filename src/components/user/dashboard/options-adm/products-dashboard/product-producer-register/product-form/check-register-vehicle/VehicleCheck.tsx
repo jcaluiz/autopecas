@@ -3,7 +3,11 @@ import { CounterContext } from "@/context/Context";
 import Requests from "@/services/Requests";
 import { FormEvent, useContext, useEffect, useState } from "react";
 
-export default function VehicleCheck() {
+interface Props {
+    setVeiculo: Function
+}
+
+export default function VehicleCheck({setVeiculo}: Props) {
     const { state, dispatch } = useContext(CounterContext);
     const [vehicleState, setVehicleState] = useState([{id: 0, vehicle: ''}]);
     const [willRegister, setWillRegister] = useState(false);
@@ -27,6 +31,11 @@ export default function VehicleCheck() {
         setWillRegister(!willRegister);
     }
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch({ type: 'VEHICLE', payload: e.target.value })
+        setVeiculo(e.target.value)
+    }
+
     return (
         <div className="flex flex-col">
             {
@@ -37,7 +46,8 @@ export default function VehicleCheck() {
                             type="text"
                             id="vehicle-product"
                             className="bg-zinc-300 rounded h-8 w-32"
-                            onChange={({ target: { value } }) => dispatch({ type: 'VEHICLE', payload: value })}
+                            // onChange={({ target: { value } }) => dispatch({ type: 'VEHICLE', payload: value })}
+                            onChange={(e) => handleChange(e)}
                             value={state.vehicle}
                         />
                         <select
