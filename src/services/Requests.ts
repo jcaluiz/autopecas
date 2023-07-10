@@ -1,3 +1,4 @@
+'use client'
 import IProductPurchase from "@/Interfaces/IProductPurchase";
 import CreateProducer from "./interfaces/CreateProducer";
 // import IFindOneVehicleModel from "./interfaces/IFindOneVehicleModel";
