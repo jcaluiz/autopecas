@@ -8,8 +8,8 @@ import IProductRequest from "@/Interfaces/IProductRequest";
 dotenv.config();
 
 export default class Requests {
-    private PROTOCOL = process.env.REACT_APP_API_PROTOCOL || "http";
-    private HOST = process.env.REACT_APP_API_HOST || 'localhost:3005';
+    private PROTOCOL = process.env.NEXT_PUBLIC_API_PROTOCOL || "http";
+    private HOST = process.env.NEXT_PUBLIC_API_HOST || 'localhost:3005';
 
     public async getAllUsers() {
         let token: { token: string } = { token: '' };
