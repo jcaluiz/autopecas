@@ -11,11 +11,11 @@ export default function Acessories() {
     ];
 
     return (
-        <div className="flex flex-col group text-sm">
-            <ul className="flex gap-3">
+        <div className="flex flex-col group">
+            <ul className="flex">
                 <li className="hover:text-yellow-200 text-sm gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
-                    <Radio />
-                    <p>Acessórios</p>
+                    <Radio size={20} />
+                    <p className="text-xs">Acessórios</p>
                 </li>
             </ul>
             <Sidebar array={acessories} />

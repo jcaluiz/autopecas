@@ -9,7 +9,7 @@ import Gearing from "./categories/gearing";
 
 export default function Categories() {
     return (
-        <>
+        <div className="flex items-center gap-7">
             <Acessories />
             <Wrench />
             <SteeringWeel />
@@ -18,6 +18,6 @@ export default function Categories() {
             <Engine />
             <Gear />
             <Gearing />
-        </>
+        </div>
     )
 }

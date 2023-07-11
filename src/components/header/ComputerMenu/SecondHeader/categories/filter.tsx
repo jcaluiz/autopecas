@@ -15,8 +15,10 @@ export default function Filter() {
         <div className="flex flex-col group text-sm">
             <ul className="flex gap-3">
                 <li className="hover:text-yellow-200 text-sm gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
-                    <FilterIcon />
-                    Filtros e Lubrificantes
+                    <FilterIcon size={20} />
+                    <p className="text-xs">
+                        Filtros e Lubrificantes
+                    </p>
                 </li>
             </ul>
             <Sidebar array={filter} />

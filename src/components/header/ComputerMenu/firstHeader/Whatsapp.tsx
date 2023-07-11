@@ -11,7 +11,7 @@ export default function Whatsapp() {
                 target="_blank"
             >
                 <Image src="/images/whatsapp-logo-variant-svgrepo-com.svg" width={25} height={25} alt="WhatsApp" className="invert" />
-                <p className="max-lg:text-sm">+55 21 99188-3501</p>
+                <p className="max-lg:text-sm text-base">+55 21 99188-3501</p>
             </a>
         </div>
     )

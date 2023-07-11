@@ -19,7 +19,7 @@ export default function Buy() {
     const { state, dispatch } = useContext(CounterContext);
     const [purchase, setPurchase] = useState<any>(null);
     const [products, setProducts] = useState<any>([]);
-    const [total, setTotal] = useState<number>(0);
+    // const [total, setTotal] = useState<number>(0);
     const [showContent, setShowContent] = useState(false);
 
     const requests = new Requests();
@@ -39,12 +39,6 @@ export default function Buy() {
             });
         };
         getProducts();
-        const newTotal = products.reduce((
-            acc: number,
-            curr: { salePrice: string },
-            i: number
-        ) => acc + (purchase[i].quantity * Number(curr.salePrice)), 0);
-        setTotal(newTotal);
     }, [purchase]);
 
     useEffect(() => {
@@ -87,6 +81,12 @@ export default function Buy() {
         e.preventDefault();
         router.push(`/identification/${user.id}`);
     }
+
+    const total = showContent && products.reduce((
+        acc: number,
+        curr: { salePrice: string },
+        i: number
+    ) => acc + (purchase[i].quantity * Number(curr.salePrice)), 0);
 
     return (
         <>

@@ -23,8 +23,10 @@ export default function Engine() {
         <div className="flex flex-col group text-sm">
             <ul className="flex gap-3">
                 <li className="hover:text-yellow-200 text-sm gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
-                    <Image className="invert" src="/images/engine.svg" height={27} width={27} alt="Engine" />
-                    Motores e Partes
+                    <Image className="invert" src="/images/engine.svg" height={20} width={20} alt="Engine" />
+                    <p className="text-xs">
+                        Motores e Partes
+                    </p>
                 </li>
             </ul>
             <Sidebar array={engine} />

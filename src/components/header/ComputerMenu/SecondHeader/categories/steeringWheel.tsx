@@ -17,8 +17,8 @@ export default function SteeringWeel() {
         <div className="flex flex-col group text-sm">
             <ul className="flex gap-3">
                 <li className="hover:text-yellow-200 text-sm gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
-                    <Image className="invert" src="/images/steering-wheel.svg" height={27} width={27} alt="steering wheel" />
-                    Direção, Suspensão e Freios
+                    <Image className="invert" src="/images/steering-wheel.svg" height={20} width={20} alt="steering wheel" />
+                    <p className="text-xs">Direção, Suspensão e Freios</p>
                 </li>
             </ul>
             <Sidebar array={weel}/>

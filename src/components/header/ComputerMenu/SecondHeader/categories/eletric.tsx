@@ -15,8 +15,10 @@ export default function Eletric() {
         <div className="flex flex-col group text-sm">
             <ul className="flex gap-3">
                 <li className="hover:text-yellow-200 text-sm gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
-                    <Image className="invert" src="/images/car-battery.svg" height={27} width={27} alt="Car Battery" />
-                    Elétrica e Injeção
+                    <Image className="invert" src="/images/car-battery.svg" height={20} width={20} alt="Car Battery" />
+                    <p className="text-xs">
+                        Elétrica e Injeção
+                    </p>
                 </li>
             </ul>
             <Sidebar array={eletric}/>

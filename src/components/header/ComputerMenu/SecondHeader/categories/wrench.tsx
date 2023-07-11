@@ -16,11 +16,11 @@ export default function Wrench() {
     ];
 
     return (
-        <div className="flex flex-col group text-sm">
+        <div className="flex flex-col group">
             <ul className="flex gap-3">
-                <li className="hover:text-yellow-200 text-sm gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
-                    <Radio />
-                    <p>Ferramentas</p>
+                <li className="hover:text-yellow-200 gap-1 py-2 hover:bg-white/5 flex items-center justify-center">
+                    <Radio size={20} />
+                    <p className="text-xs">Ferramentas</p>
                 </li>
             </ul>
             <Sidebar array={wrench} />

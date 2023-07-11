@@ -6,7 +6,7 @@ import Whatsapp from "./firstHeader/Whatsapp";
 
 export default function FirstHeader() {
     return (
-        <header className="bg-green-header-first h-20 flex justify-between items-center">
+        <header className="bg-green-header-first h-20 flex justify-around items-center">
             <Logo />
             <SearchParts />
             <OrderAndTracking />
