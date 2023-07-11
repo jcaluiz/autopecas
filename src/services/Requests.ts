@@ -417,15 +417,15 @@ export default class Requests {
     }
 
     public async findProductById(id: number) {
-        let token: { token: string } = { token: '' };
-        if (typeof localStorage !== 'undefined') {
-            token = JSON.parse(localStorage.getItem('message') || '');
-        }
+        // let token: { token: string } = { token: '' };
+        // if (typeof localStorage !== 'undefined') {
+        //     token = JSON.parse(localStorage.getItem('message') || '');
+        // }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product/by-id?productId=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: token.token,
+                // Authorization: token.token,
             },
         });
         const role = await response.json();
@@ -433,15 +433,15 @@ export default class Requests {
     }
 
     public async findOriginalCodeById(id: number) {
-        let token: { token: string } = { token: '' };
-        if (typeof localStorage !== 'undefined') {
-            token = JSON.parse(localStorage.getItem('message') || '');
-        }
+        // let token: { token: string } = { token: '' };
+        // if (typeof localStorage !== 'undefined') {
+        //     token = JSON.parse(localStorage.getItem('message') || '');
+        // }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code/by-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: token.token,
+                // Authorization: token.token,
             },
         });
         const role = await response.json();
@@ -449,15 +449,15 @@ export default class Requests {
     }
 
     public async findProducerById(id: number) {
-        let token: { token: string } = { token: '' };
-        if (typeof localStorage !== 'undefined') {
-            token = JSON.parse(localStorage.getItem('message') || '');
-        }
+        // let token: { token: string } = { token: '' };
+        // if (typeof localStorage !== 'undefined') {
+        //     token = JSON.parse(localStorage.getItem('message') || '');
+        // }
         const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer/find-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: token.token,
+                // Authorization: token.token,
             },
         });
         const role = await response.json();
