@@ -17,8 +17,10 @@ import MenuPurchase from "./components/MenuPurchase";
 export default function Buy() {
     const [user, setUser] = useState<{ id: string | null, name: string | null }>({ id: '', name: '' });
     const { state, dispatch } = useContext(CounterContext);
-    const [purchase, setPurchase] = useState<any>([]);
+    const [purchase, setPurchase] = useState<any>(null);
     const [products, setProducts] = useState<any>([]);
+    const [total, setTotal] = useState<number>(0);
+    const [showContent, setShowContent] = useState(false);
 
     const requests = new Requests();
     const router = useRouter();
@@ -31,12 +33,18 @@ export default function Buy() {
 
     useEffect(() => {
         const getProducts = async () => {
-            await purchase.forEach(async (e: { productId: number }) => {
+            purchase && await purchase.forEach(async (e: { productId: number }) => {
                 const productsPurchase = await requests.findProductById(e.productId);
                 setProducts((previous: object[]) => [...previous, productsPurchase]);
             });
         };
         getProducts();
+        const newTotal = products.reduce((
+            acc: number,
+            curr: { salePrice: string },
+            i: number
+        ) => acc + (purchase[i].quantity * Number(curr.salePrice)), 0);
+        setTotal(newTotal);
     }, [purchase]);
 
     useEffect(() => {
@@ -55,14 +63,13 @@ export default function Buy() {
             name: newName && newName?.replace(/"/gm, ''),
         }})
         getPurchases(Number(id));
+        const timer = setTimeout(() => {
+            setShowContent(true);
+          }, 1000);
+      
+          return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const total = products.reduce((
-        acc: number,
-        curr: { salePrice: string },
-        i: number
-    ) => acc + (purchase[i].quantity * Number(curr.salePrice)), 0);
 
     const cleanDelete = (e: FormEvent) => {
         e.preventDefault();
@@ -93,7 +100,7 @@ export default function Buy() {
                 <p className="text-center text-3xl">{`SEUS PEDIDOS, ${user.name?.toUpperCase()}`}</p>
                 <div className="flex flex-col w-full">
                     {
-                        products.map((product: any, i: number) => (
+                        showContent && products.map((product: any, i: number) => (
                             <section key={product.id} className="flex gap-16 w-full">
                                 <div className="flex flex-col justify-center items-center gap-2 pl-4">
                                     <div className="group relative flex hover:text-yellow-600">
@@ -116,7 +123,7 @@ export default function Buy() {
                                     </div>
                                     <div className="flex flex-col w-80 border-2">
                                         <label htmlFor="name-product" className="text-center text-xl">Quantidade</label>
-                                        <p className="text-center pt-2">{purchase[i].quantity}</p>
+                                        <p className="text-center pt-2">{showContent && purchase[i].quantity}</p>
                                     </div>
                                     <div className="flex flex-col items-center border-2 w-80">
                                         <label htmlFor="name-product" className="text-center text-xl">Preço Unitário</label>
@@ -124,7 +131,7 @@ export default function Buy() {
                                     </div>
                                     <div className="flex flex-col items-center border-2 w-80">
                                         <label htmlFor="name-product" className="text-center text-xl">Total</label>
-                                        <p className="text-center pt-2">{(purchase[i].quantity * Number(product.salePrice)).toFixed(2).replace(/\./, ',')}</p>
+                                        <p className="text-center pt-2">{showContent && (purchase[i].quantity * Number(product.salePrice)).toFixed(2).replace(/\./, ',')}</p>
                                     </div>
                                 </section>
                             </section>
