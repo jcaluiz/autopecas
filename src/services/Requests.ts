@@ -8,8 +8,8 @@ import IProductRequest from "@/Interfaces/IProductRequest";
 dotenv.config();
 
 export default class Requests {
-    private PROTOCOL = process.env.NEXT_PUBLIC_API_PROTOCOL || "http";
-    private HOST = process.env.NEXT_PUBLIC_API_HOST || 'localhost:3005';
+    // private PROTOCOL = process.env.NEXT_PUBLIC_API_PROTOCOL || "http";
+    private HOST = process.env.NEXT_PUBLIC_API_HOST || 'http://localhost:3005';
 
     public async getAllUsers() {
         let token: { token: string } = { token: '' };
@@ -17,7 +17,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
 
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user`, {
+        const response = await fetch(`${this.HOST}/user`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,8 +29,8 @@ export default class Requests {
     }
 
     public async login(email: string, password: string) {
-        console.log(`${this.PROTOCOL}://${this.HOST}/user`);
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user`, {
+        console.log(`${this.HOST}/user`);
+        const response = await fetch(`${this.HOST}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default class Requests {
     }
 
     public async getAllProducts() {
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/products`, {
+        const response = await fetch(`${this.HOST}/products`, {
             method: 'GET',
         });
         const products = await response.json();
@@ -54,7 +54,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product`, {
+        const response = await fetch(`${this.HOST}/product`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code`, {
+        const response = await fetch(`${this.HOST}/original-code`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code?originalCode=${codeOriginal}`, {
+        const response = await fetch(`${this.HOST}/original-code?originalCode=${codeOriginal}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const newCategory = category.replace(/\s/gm, '-');
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/category/find-one?category=${newCategory}`, {
+        const response = await fetch(`${this.HOST}/category/find-one?category=${newCategory}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ export default class Requests {
     }
 
     public async getByEmail(email: string) {
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user/email`, {
+        const response = await fetch(`${this.HOST}/user/email`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/user/user-type`, {
+        const response = await fetch(`${this.HOST}/user/user-type`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const newProducer = producer.replace(/\s/gm, '-');
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer?producer=${newProducer}`, {
+        const response = await fetch(`${this.HOST}/producer?producer=${newProducer}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand/find-brand`, {
+        const response = await fetch(`${this.HOST}/vehicle-brand/find-brand`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle/find-vehicle`, {
+        const response = await fetch(`${this.HOST}/vehicle/find-vehicle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model?model=${model}`, {
+        const response = await fetch(`${this.HOST}/vehicle-model?model=${model}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -221,7 +221,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer`, {
+        const response = await fetch(`${this.HOST}/producer`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -238,7 +238,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle/all-vehicle`, {
+        const response = await fetch(`${this.HOST}/vehicle/all-vehicle`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -254,7 +254,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand/all-brand`, {
+        const response = await fetch(`${this.HOST}/vehicle-brand/all-brand`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -270,7 +270,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model/all-model`, {
+        const response = await fetch(`${this.HOST}/vehicle-model/all-model`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -286,7 +286,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle`, {
+        const response = await fetch(`${this.HOST}/vehicle`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -303,7 +303,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-brand`, {
+        const response = await fetch(`${this.HOST}/vehicle-brand`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -320,7 +320,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/vehicle-model`, {
+        const response = await fetch(`${this.HOST}/vehicle-model`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -337,7 +337,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/category`, {
+        const response = await fetch(`${this.HOST}/category`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -350,7 +350,7 @@ export default class Requests {
 
     public async findAllProduct() {
         // const token = JSON.parse(localStorage.getItem('message') || '');
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product`, {
+        const response = await fetch(`${this.HOST}/product`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -369,7 +369,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product-original-code`, {
+        const response = await fetch(`${this.HOST}/product-original-code`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -387,7 +387,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`,
+            `${this.HOST}/product/check-codes?codeOriginalId=${codeOriginalId}&codeProducer=${codeProducer}`,
             {
                 method: 'GET',
                 headers: {
@@ -404,7 +404,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product-application`, {
+        const response = await fetch(`${this.HOST}/product-application`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -421,7 +421,7 @@ export default class Requests {
         // if (typeof localStorage !== 'undefined') {
         //     token = JSON.parse(localStorage.getItem('message') || '');
         // }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/product/by-id?productId=${id}`, {
+        const response = await fetch(`${this.HOST}/product/by-id?productId=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -437,7 +437,7 @@ export default class Requests {
         // if (typeof localStorage !== 'undefined') {
         //     token = JSON.parse(localStorage.getItem('message') || '');
         // }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/original-code/by-id?id=${id}`, {
+        const response = await fetch(`${this.HOST}/original-code/by-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -453,7 +453,7 @@ export default class Requests {
         // if (typeof localStorage !== 'undefined') {
         //     token = JSON.parse(localStorage.getItem('message') || '');
         // }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/producer/find-id?id=${id}`, {
+        const response = await fetch(`${this.HOST}/producer/find-id?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -476,7 +476,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase`, {
+        const response = await fetch(`${this.HOST}/purchase`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -493,7 +493,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase/all-purchase`, {
+        const response = await fetch(`${this.HOST}/purchase/all-purchase`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -509,7 +509,7 @@ export default class Requests {
         if (typeof localStorage !== 'undefined') {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
-        const response = await fetch(`${this.PROTOCOL}://${this.HOST}/purchase?userId=${userId}`, {
+        const response = await fetch(`${this.HOST}/purchase?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -527,7 +527,7 @@ export default class Requests {
         }
         const routerWithQuery = `find-purchase?userId=${userId}&productId=${productId}`
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/purchase/${routerWithQuery}`,
+            `${this.HOST}/purchase/${routerWithQuery}`,
             {
                 method: 'GET',
                 headers: {
@@ -545,7 +545,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/purchase`,
+            `${this.HOST}/purchase`,
             {
                 method: 'PUT',
                 headers: {
@@ -564,7 +564,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/purchase?productId=${ProductId}&userId=${userId}`,
+            `${this.HOST}/purchase?productId=${ProductId}&userId=${userId}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -582,7 +582,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/purchase?userId=${userId}`,
+            `${this.HOST}/purchase?userId=${userId}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -601,7 +601,7 @@ export default class Requests {
         }
         const routerWithQuery = `find-by-id?id=${userId}`
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/user/${routerWithQuery}`,
+            `${this.HOST}/user/${routerWithQuery}`,
             {
                 method: 'GET',
                 headers: {
@@ -621,7 +621,7 @@ export default class Requests {
         const { id, name, codeOriginalId, codeProducer, description, quantity, costPrice, salePrice, categoryId, ncm, image } = product;
         const newProduct = { id, name, codeOriginalId, codeProducer, quantity, description, costPrice, salePrice, categoryId, ncm, image }
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/product/update`,
+            `${this.HOST}/product/update`,
             {
                 method: 'PUT',
                 headers: {
@@ -640,7 +640,7 @@ export default class Requests {
             token = JSON.parse(localStorage.getItem('message') || '');
         }
         const response = await fetch(
-            `${this.PROTOCOL}://${this.HOST}/product/delete?id=${id}`,
+            `${this.HOST}/product/delete?id=${id}`,
             {
                 method: 'DELETE',
                 headers: {
