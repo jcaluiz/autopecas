@@ -5,6 +5,7 @@ import { CounterContext } from "@/context/Context";
 
 export default function ProductsSample() {
     const {state} = useContext(CounterContext);
+    console.log(state.products);
 
     return (
         <section className="flex flex-col items-center justify-center lg:grid grid-cols-4 lg:pl-20 gap-y-5 font-body font-semibold text-sm/[14px] text-black/80">

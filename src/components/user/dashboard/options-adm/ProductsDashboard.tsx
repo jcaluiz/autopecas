@@ -3,6 +3,7 @@
 import { ReactNode, useState } from "react";
 import RegistrationProduct from "./products-dashboard/RegistrationProduct";
 import AllProducts from "./products-dashboard/AllProduct";
+import RegistrationByExcel from "./products-dashboard/registration-product-by-exel/RegistrationByExcel";
 
 interface OptionsChoice {
     [key: string]: ReactNode | string;
@@ -10,11 +11,12 @@ interface OptionsChoice {
 
 export default function ProductsDashboard() {
     const [buttonChoice, setButtonChoise] = useState('Cadastrar');
-    const optionsButton = ['Cadastrar', 'Produtos'];
+    const optionsButton = ['Cadastrar', 'Cadastrar por Excel', 'Produtos'];
 
     const optionChoice: OptionsChoice = {
         'Cadastrar': <RegistrationProduct />,
         'Produtos': <AllProducts />,
+        'Cadastrar por Excel': <RegistrationByExcel />
     }
 
     return (

@@ -18,6 +18,7 @@ export default function Home() {
         const requests = new Requests();
         const getAllProducts = async () => {
             const products = await requests.findAllProduct();
+            console.log(products)
             dispatch({type: 'PRODUCTREQUEST', payload: products});
         }
         getAllProducts();
